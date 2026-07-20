@@ -8,27 +8,86 @@
         body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background-color: #1a1a1a; color: white; padding: 20px; }
         .container { background: #2d2d2d; padding: 30px; border-radius: 15px; max-width: 600px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         h1 { color: #f7931a; }
-        .hero { margin-bottom: 30px; }
-        .btn { background-color: #00d4ff; color: #1a1a1a; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-size: 18px; font-weight: bold; text-decoration: none; display: inline-block; }
+        h2 { color: #00d4ff; font-size: 22px; margin-bottom: 20px;}
+        .hero { margin-bottom: 30px; font-size: 16px;}
+        
+        /* Boutons */
+        .btn { background-color: #00d4ff; color: #1a1a1a; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-size: 16px; font-weight: bold; margin: 10px 5px; transition: 0.3s; }
+        .btn:hover { opacity: 0.8; }
+        .btn-btc { background-color: #f7931a; color: white; width: 100%; max-width: 300px; margin-top: 20px;}
+        
+        /* Section Paiement */
         .btc-section { display: none; background: #1f1f1f; padding: 20px; border-radius: 10px; margin-top: 20px; border: 1px solid #f7931a; }
-        .btc-address { background: #000; padding: 10px; font-family: monospace; word-break: break-all; margin: 15px 0; color: #00ff00; }
+        .btc-address { background: #000; padding: 15px; font-family: monospace; word-break: break-all; margin: 15px 0; color: #00ff00; font-size: 15px; border-radius: 8px;}
+        
+        /* Catalogue */
+        .catalogue { text-align: left; margin-top: 30px; }
+        .item-card { background: #3d3d3d; padding: 15px; margin-bottom: 12px; border-radius: 8px; border-left: 5px solid #f7931a; font-family: monospace; font-size: 15px;}
+        .hidden-text { background: #000; color: #888; padding: 3px 8px; border-radius: 4px; font-size: 0.85em; font-family: sans-serif; margin-left: 10px;}
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- PAGE D'ACCUEIL -->
         <div id="home-section">
-            <h1>Bienvenue sur PrimeDealsHub</h1>
-            <p class="hero">Votre destination pour des solutions numériques et cartes cadeaux à prix avantageux.</p>
-            <button class="btn" onclick="document.getElementById('home-section').style.display='none'; document.getElementById('btc-section').style.display='block';">Voir les options de paiement</button>
+            <h1>PrimeDealsHub</h1>
+            <p class="hero">Expert en solutions numériques. Choisissez votre produit ci-dessous.</p>
+            
+            <div class="catalogue">
+                <h2>Inventaire disponible</h2>
+                
+                <div class="item-card">
+                    💳 8492-XXXX-XXXX-XXXX <span class="hidden-text">🔒 Payez pour révéler</span>
+                </div>
+                <div class="item-card">
+                    💳 3715-XXXX-XXXX-XXXX <span class="hidden-text">🔒 Payez pour révéler</span>
+                </div>
+                <div class="item-card">
+                    💳 9204-XXXX-XXXX-XXXX <span class="hidden-text">🔒 Payez pour révéler</span>
+                </div>
+                <div class="item-card">
+                    💳 1583-XXXX-XXXX-XXXX <span class="hidden-text">🔒 Payez pour révéler</span>
+                </div>
+                <div class="item-card">
+                    💳 6479-XXXX-XXXX-XXXX <span class="hidden-text">🔒 Payez pour révéler</span>
+                </div>
+                <div class="item-card">
+                    💳 2931-XXXX-XXXX-XXXX <span class="hidden-text">🔒 Payez pour révéler</span>
+                </div>
+                <div class="item-card">
+                    💳 5108-XXXX-XXXX-XXXX <span class="hidden-text">🔒 Payez pour révéler</span>
+                </div>
+            </div>
+
+            <!-- Bouton pour aller au paiement -->
+            <button class="btn btn-btc" onclick="document.getElementById('home-section').style.display='none'; document.getElementById('btc-section').style.display='block';">Passer au paiement (BTC)</button>
         </div>
 
+        <!-- PAGE DE PAIEMENT (Masquée par défaut) -->
         <div id="btc-section" class="btc-section">
             <h2>Paiement en Bitcoin</h2>
-            <p>Envoyez le montant à cette adresse :</p>
-            <div class="btc-address">bc1qevxlcu7x3r6fq52dhwn2fpah4unu9n6a9c44wq</div>
-            <p><small>Réseau BTC uniquement.</small></p>
-            <button onclick="location.reload()">Retour à l'accueil</button>
+            <p>Envoyez le montant exact à cette adresse pour débloquer votre code complet :</p>
+            
+            <div class="btc-address" id="btc-addr">bc1qevxlcu7x3r6fq52dhwn2fpah4unu9n6a9c44wq</div>
+            
+            <button class="btn" onclick="copierAdresse()">📋 Copier l'adresse</button>
+            <p><small>Réseau BTC uniquement. Contactez-moi avec une preuve de paiement une fois la transaction envoyée.</small></p>
+            
+            <hr style="border-color: #333; margin: 20px 0;">
+            <button class="btn" style="background-color: #555; color: white;" onclick="location.reload()">Retour à l'accueil</button>
         </div>
     </div>
+
+    <!-- Script pour le bouton Copier -->
+    <script>
+        function copierAdresse() {
+            var texte = document.getElementById("btc-addr").innerText;
+            navigator.clipboard.writeText(texte).then(function() {
+                alert("L'adresse Bitcoin a été copiée avec succès !");
+            }, function(err) {
+                alert("Erreur : impossible de copier l'adresse.");
+            });
+        }
+    </script>
 </body>
 </html>
