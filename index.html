@@ -2,11 +2,31 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>PrimeDealsHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeDealsHub - Solutions Numériques</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background-color: #1a1a1a; color: white; padding: 20px; }
+        .container { background: #2d2d2d; padding: 30px; border-radius: 15px; max-width: 600px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        h1 { color: #f7931a; }
+        h2 { color: #00d4ff; margin-top: 30px; }
+        .btc-section { background: #1f1f1f; padding: 20px; border-radius: 10px; margin-top: 20px; border: 1px solid #f7931a; }
+        .btc-address { background: #000; padding: 10px; font-family: monospace; word-break: break-all; margin: 15px 0; color: #00ff00; font-size: 14px; }
+        button { background-color: #f7931a; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; }
+    </style>
 </head>
 <body>
-    <h1>Bienvenue sur PrimeDealsHub</h1>
-    <p>Nous proposons des cartes PS Plus à prix réduit.</p>
-    <button onclick="alert('Contactez-moi sur WhatsApp pour commander !')">Commander</button>
+    <div class="container">
+        <h1>PrimeDealsHub</h1>
+        <p>Expert en solutions numériques et cartes cadeaux à prix avantageux.</p>
+
+        <div class="btc-section">
+            <h2>Paiement en Bitcoin</h2>
+            <p>Veuillez envoyer le montant correspondant à l'adresse ci-dessous :</p>
+            <div class="btc-address">bc1qevxlcu7x3r6fq52dhwn2fpah4unu9n6a9c44wq</div>
+            <p><small>Assurez-vous d'utiliser le réseau Bitcoin (BTC) uniquement.</small></p>
+            
+            <button onclick="alert('Veuillez m\'envoyer une capture d\'écran de votre transaction une fois le paiement effectué pour validation.')">Confirmer le paiement</button>
+        </div>
+    </div>
 </body>
 </html>
