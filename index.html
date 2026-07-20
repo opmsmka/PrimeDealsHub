@@ -1,186 +1,87 @@
-<!DOCTYPE html>
-<html lang="en"> <!-- Changé en anglais -->
+                <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrimeDealsHub - Store</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #1a1a1a; 
-            color: white; 
-            padding: 20px; 
-            text-align: center; 
-        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #1a1a1a; color: white; padding: 20px; text-align: center; }
         .container { 
-            max-width: 550px; 
-            margin: auto; 
-            /* Ajout de votre image en arrière-plan */
-            background-image: url('1000057898.jpg');
-            background-size: cover; /* Couvre tout le conteneur */
-            background-position: center; /* Centre l'image */
-            background-repeat: no-repeat;
-            padding: 30px; 
-            border-radius: 15px; 
-            position: relative; /* Nécessaire pour l'effet de superposition */
+            max-width: 550px; margin: auto; 
+            background-image: url('1000057898.jpg'); /* Assurez-vous que le nom du fichier est identique sur GitHub */
+            background-size: cover; background-position: center;
+            padding: 30px; border-radius: 15px; position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            border: 2px solid #444;
         }
-
-        /* Effet de superposition sombre pour la lisibilité du texte */
         .container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Fond noir semi-transparent */
-            border-radius: 15px;
-            z-index: 1; /* Place la superposition derrière le contenu */
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.88); border-radius: 15px; z-index: 1;
         }
-
-        /* Assure que le contenu est au-dessus de l'arrière-plan */
-        h1, p, #catalogue, #paiement {
-            position: relative;
-            z-index: 2;
-        }
-
-        h1 { color: #f7931a; margin-bottom: 10px; }
-        .instruction { margin-bottom: 25px; color: #ccc; font-size: 1.1em;}
-
-        /* Cartes de produits */
+        h1, p, #catalogue, #paiement { position: relative; z-index: 2; }
+        h1 { color: #f7931a; }
         .item-card { 
-            background-color: rgba(61, 61, 61, 0.6); /* Légère transparence */
-            padding: 20px; 
-            margin-bottom: 15px; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            border: 1px solid #666; 
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: monospace;
-            font-size: 1.1em;
+            background-color: rgba(61, 61, 61, 0.6); padding: 18px; margin-bottom: 12px; 
+            border-radius: 10px; cursor: pointer; border: 1px solid #666;
+            display: flex; justify-content: space-between; font-family: monospace;
         }
-        .item-card:hover { 
-            border-color: #f7931a; 
-            background-color: rgba(247, 147, 26, 0.2); /* Teinte orange au survol */
-            transform: translateY(-2px);
-        }
-        .price { color: #00d4ff; font-weight: bold; font-family: sans-serif;}
-
-        /* Section Paiement */
-        .hidden-section { display: none; margin-top: 30px; border-top: 2px dashed #f7931a; padding-top: 25px; }
-        h2 { color: #00d4ff; font-size: 1.5em; margin-bottom: 15px;}
-        .btc-address { 
-            background-color: #000; 
-            padding: 15px; 
-            font-family: monospace; 
-            color: #00ff00; 
-            word-break: break-all; 
-            margin: 15px 0; 
-            border-radius: 8px;
-            border: 1px solid #333;
-        }
+        .item-card:hover { border-color: #f7931a; background-color: rgba(247, 147, 26, 0.2); }
+        .hidden-section { display: none; margin-top: 30px; border-top: 2px dashed #f7931a; padding-top: 20px; }
         input { 
-            width: 80%; 
-            padding: 12px; 
-            margin-bottom: 20px; 
-            border-radius: 8px; 
-            border: 2px solid #666; 
-            background-color: #222;
-            color: white;
-            font-size: 1em;
+            width: 85%; padding: 12px; margin-bottom: 10px; border-radius: 8px; 
+            border: 1px solid #555; background: #222; color: white;
         }
-        input:focus { outline: none; border-color: #f7931a;}
-        
-        /* Boutons */
         .action-btn { 
-            padding: 12px 30px; 
-            background-color: #f7931a; 
-            color: white; 
-            border: none; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 1.1em; 
-            font-weight: bold;
-            transition: background 0.3s;
+            padding: 12px 25px; background-color: #f7931a; color: white; 
+            border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
         }
-        .action-btn:hover { background-color: #e68a19; }
-        .back-btn { background-color: #555; margin-top: 15px; }
-        .back-btn:hover { background-color: #666; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>PrimeDealsHub</h1>
-        <p class="instruction">Click on a card to proceed to checkout:</p>
+        <p>Select your product to proceed:</p>
 
-        <!-- CATALOG SECTION -->
         <div id="catalogue">
-            <div class="item-card" onclick="selectCard('8492-XXXX-XXXX-XXXX', '35$')">
-                <span>💳 8492-XXXX...</span>
-                <span class="price">35$</span>
-            </div>
-            <div class="item-card" onclick="selectCard('3715-XXXX-XXXX-XXXX', '47$')">
-                <span>💳 3715-XXXX...</span>
-                <span class="price">47$</span>
-            </div>
-            <div class="item-card" onclick="selectCard('9204-XXXX-XXXX-XXXX', '52$')">
-                <span>💳 9204-XXXX...</span>
-                <span class="price">52$</span>
-            </div>
-            <div class="item-card" onclick="selectCard('1583-XXXX-XXXX-XXXX', '46$')">
-                <span>💳 1583-XXXX...</span>
-                <span class="price">46$</span>
-            </div>
-            <div class="item-card" onclick="selectCard('6479-XXXX-XXXX-XXXX', '39$')">
-                <span>💳 6479-XXXX...</span>
-                <span class="price">39$</span>
-            </div>
-            <div class="item-card" onclick="selectCard('2931-XXXX-XXXX-XXXX', '48$')">
-                <span>💳 2931-XXXX...</span>
-                <span class="price">48$</span>
-            </div>
-            <div class="item-card" onclick="selectCard('5108-XXXX-XXXX-XXXX', '62$')">
-                <span>💳 5108-XXXX...</span>
-                <span class="price">62$</span>
-            </div>
+            <div class="item-card" onclick="selectCard('8492-XXXX-XXXX-XXXX', '35$')"><span>💳 8492-XXXX...</span> <b>35$</b></div>
+            <div class="item-card" onclick="selectCard('3715-XXXX-XXXX-XXXX', '47$')"><span>💳 3715-XXXX...</span> <b>47$</b></div>
+            <div class="item-card" onclick="selectCard('9204-XXXX-XXXX-XXXX', '52$')"><span>💳 9204-XXXX...</span> <b>52$</b></div>
+            <div class="item-card" onclick="selectCard('1583-XXXX-XXXX-XXXX', '46$')"><span>💳 1583-XXXX...</span> <b>46$</b></div>
+            <div class="item-card" onclick="6479-XXXX-XXXX-XXXX', '39$')"><span>💳 6479-XXXX...</span> <b>39$</b></div>
+            <div class="item-card" onclick="selectCard('2931-XXXX-XXXX-XXXX', '48$')"><span>💳 2931-XXXX...</span> <b>48$</b></div>
+            <div class="item-card" onclick="selectCard('5108-XXXX-XXXX-XXXX', '62$')"><span>💳 5108-XXXX...</span> <b>62$</b></div>
         </div>
 
-        <!-- PAYMENT SECTION (Hidden by default) -->
         <div id="paiement" class="hidden-section">
             <h2 id="payment-title">Checkout</h2>
-            <p>Please enter your username or email for identification:</p>
-            <input type="text" id="client-info" placeholder="Your Name / ID">
+            <input type="text" id="username" placeholder="Enter your pseudo">
+            <input type="email" id="email" placeholder="Enter your email address">
             
             <p>Send <span id="price-display" style="color: #f7931a; font-weight: bold;"></span> to this address:</p>
-            <div class="btc-address">bc1qevxlcu7x3r6fq52dhwn2fpah4unu9n6a9c44wq</div>
+            <div style="background:#000; padding:10px; font-family:monospace; color:#00ff00; margin:10px 0;">bc1qevxlcu7x3r6fq52dhwn2fpah4unu9n6a9c44wq</div>
             
-            <button class="action-btn" onclick="finalize()">I have made the payment</button>
-            <br>
-            <button class="action-btn back-btn" onclick="goBack()">Back to catalogue</button>
+            <button class="action-btn" onclick="finalize()">Confirm Payment</button>
+            <br><br>
+            <button onclick="location.reload()" style="background:none; border:none; color:#888; cursor:pointer;">Cancel</button>
         </div>
     </div>
 
     <script>
-        // Fonctions JS mises à jour pour l'anglais
         function selectCard(num, price) {
             document.getElementById('catalogue').style.display = 'none';
             document.getElementById('paiement').style.display = 'block';
             document.getElementById('price-display').innerText = price;
-            document.getElementById('payment-title').innerText = "Checkout for: " + num;
-        }
-
-        function goBack() {
-            document.getElementById('paiement').style.display = 'none';
-            document.getElementById('catalogue').style.display = 'block';
-            document.getElementById('client-info').value = ''; // Efface le champ
+            document.getElementById('payment-title').innerText = "Checkout: " + num;
         }
 
         function finalize() {
-            var info = document.getElementById('client-info').value;
-            if(info === "") { alert("Please enter your ID first!"); return; }
-            alert("Thank you, " + info + "! I will check the blockchain for your transaction and contact you shortly with the full details.");
+            var user = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            
+            if(user === "" || email === "") { 
+                alert("Please fill in both your pseudo and email address!"); 
+                return; 
+            }
+            alert("Thank you " + user + "! Your request is received. You will receive the card details at " + email + " once the payment is confirmed.");
         }
     </script>
 </body>
